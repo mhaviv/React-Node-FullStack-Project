@@ -28,8 +28,10 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
 	clientID: keys.googleClientID,
 	clientSecret: keys.googleClientSecret,
-	callbackURL: '/auth/google/callback', // after person grants access this is url to redirect to site
-	proxy: true //if request runs through any proxy, trust the proxy and calculate url correctly
+	// after person grants access this is url to redirect to site
+	callbackURL: '/auth/google/callback',
+	//if request runs through any proxy, trust the proxy and calculate url correctly
+	proxy: true
 },
 (accessToken, refreshToken, profile, done) => {
 	User.findOne({ googleId: profile.id })
