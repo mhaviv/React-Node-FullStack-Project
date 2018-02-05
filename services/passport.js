@@ -24,10 +24,12 @@ passport.deserializeUser((id, done) => {
 // Telling passport to use new strategy
 // new instance of the Google Passport Strategy
 // need to give it client id and client secret - so google know which app this is for
+// if callbackURL is a relative path, it causes on deployment to search for http and not https since there is heroku proxy before it goes to the browser
 passport.use(new GoogleStrategy({
 	clientID: keys.googleClientID,
 	clientSecret: keys.googleClientSecret,
-	callbackURL: '/auth/google/callback' // after person grants access this is url to redirect to site
+	callbackURL: '/auth/google/callback', // after person grants access this is url to redirect to site
+	proxy: true //if request runs through any proxy, trust the proxy and calculate url correctly
 },
 (accessToken, refreshToken, profile, done) => {
 	User.findOne({ googleId: profile.id })
