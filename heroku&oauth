@@ -1,0 +1,26 @@
+Comments:
+
+declare version for Heroku to use
+Heroku runs old versions of Node and npm so must declare
+
+OAuth:
+
+1. when a user clicks our login button, they are going to be directed to our server (localhost:5000 or wv/auth/google
+
+2. server then forwards request to google servers
+
+3. User grants permission to application
+
+4. kicked back to server at server route (localhost:5000 or wv)/auth/google/callback
+
+5. passport strategy saw the code inside url and automatically did a follow up request to google to exchange the code with the users actual profile and email address (whatever you have in scope)
+
+6. After request is made a callback function is executed with the tokens and information and now we have the ability to add a new user
+
+		a. Access Token - a token that allows us to do something on the users behalf (like post for the user or read profile, or add/delete emails inside of their inbox). Access token proves we are allowed to do that
+
+		b. Refresh Token - allows us to refresh the access token. The access token automatically expires after some amount of time and we can be given optionally a refresh token that allows us to automatically update the access token (reach into the users account for additional amount of time)
+
+		c. Profile - has all of our identifiying information (name, email, address, etc...)
+
+

@@ -1,0 +1,11 @@
+Folder Structure :
+
+Server: 
+
+	1. config - Protected API Keys and Settings/Configurations
+
+	2. routes - all route handlers. Has one file for each route or purposely grouped set of routes
+
+	3. services - houses a bunch of logic that helps out our application (for example passport.js file )
+
+	4. index.js

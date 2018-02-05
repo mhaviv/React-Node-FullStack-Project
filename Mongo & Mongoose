@@ -1,0 +1,9 @@
+Mongo DB is schemaless 
+
+inside of every collection (table in postgres) every record could have its own very distinct set of properties
+
+Mongoose is like Sequelize for sql
+
+Model Class - used to access an entire collection in MongoDB
+
+Model Intances - Javascript objects that represent a single record sitting inside of a collection

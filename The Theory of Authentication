@@ -1,0 +1,20 @@
+The Theory of Authentication:
+
+We communicate with are browser and express web server by http requests.
+HTTP is stateless - between any two requests that we make, HTTP inherintly has no way to identify or share information between two separate requests.
+
+Ex: if we make one request from the browser to the server and say hey here is an email and password please log us in, and the server says ooo that looks like a correct email and password your now logged in and sends a response back, but then we make another request 5 minutes later saying hey can I have a list of my posts, by default the server would not know who you are. This is because by default **information between requests is not shared**
+
+This problem is solved by tokens/cookies. 
+
+User provides credentials --> server checks --> server sends a Token (identifying information that is unique to you)
+
+On any follow up request in the browser, we are going to include the Token that proves we are the same person who made that login request previously.
+
+Inside our application we are going to use Cookie Based Authentication - When we get some initial request to our server (like our express api), we are going to say hey please log me in. So after a user goes through the OAuth process, we are going to generate some identifying piece of information. In the response sent back to the user from the initial request, we are going to create what is called a Header inside the ersponse that gets sent back to the browser. The Header is going to have a property called Set-Cookie and it is going to be set to be some random token. The token is going to uniquely identify this user.
+
+When the browser sees this response come back and sees in the header of the request the Set-Cookie thing, the browser is going to automatically strip off the token, store it in the browsers memory and the browser is going to automatically append that cookie with any follow up request being sent to the server. On the follow up request, the server is going to see that cookie being provided.
+
+OAuth uses google ID of user as token of identification
+
+
